@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 25% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 24 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 24 100% 65%;
+
+    --secondary: 220 20% 10%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 15% 12%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 24 100% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 15%;
+    --input: 220 15% 15%;
+    --ring: 24 100% 55%;
+
+    --radius: 0.5rem;
+
+    /* Cinema specific colors */
+    --cinema-orange: 24 100% 55%;
+    --cinema-dark: 220 25% 4%;
+    --cinema-darker: 220 28% 3%;
+    --cinema-light: 0 0% 98%;
+    --cinema-gray: 220 15% 12%;
+    --cinema-accent: 45 100% 60%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(24 100% 55%), hsl(24 100% 65%));
+    --gradient-dark: linear-gradient(180deg, hsl(220 25% 4%), hsl(220 28% 3%));
+    --gradient-overlay: linear-gradient(180deg, transparent, hsl(220 25% 4% / 0.9));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(24 100% 55% / 0.3);
+    --shadow-card: 0 4px 20px hsl(220 25% 0% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 40px -10px hsl(24 100% 55% / 0.4);
+  }
+
+  .hover-zoom {
+    overflow: hidden;
+  }
+
+  .hover-zoom img {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-zoom:hover img {
+    transform: scale(1.08);
+  }
+
+  .hover-glow {
+    transition: filter 0.3s ease, transform 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    filter: drop-shadow(0 0 20px hsl(24 100% 55% / 0.5));
+    transform: translateY(-2px);
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-effect {
+    background: hsl(220 20% 6% / 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(220 15% 18% / 0.5);
+  }
+}
