@@ -1,6 +1,7 @@
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Play, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import { AnimatedText } from "@/components/ui/animated-text";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -83,18 +84,23 @@ const HeroEnhanced = () => {
             </span>
           </motion.div>
 
-          {/* Main Heading with Gradient */}
-          <motion.h1
+          {/* Main Heading with Animated Text */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-heading font-bold leading-tight"
+            className="flex items-center justify-center"
           >
-            <span className="block gradient-text">OWH</span>
-            <span className="block text-3xl md:text-5xl lg:text-6xl xl:text-7xl mt-2 md:mt-4 text-foreground/90">
-              Studio
-            </span>
-          </motion.h1>
+            <AnimatedText
+              text="OWH STUDIO"
+              duration={0.08}
+              delay={0.03}
+              textClassName="text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-heading font-bold leading-tight gradient-text"
+              underlineGradient="from-cinema-orange via-primary to-cinema-orange"
+              underlineHeight="h-1.5"
+              underlineOffset="-bottom-3"
+            />
+          </motion.div>
 
           {/* Subtitle */}
           <motion.p
@@ -120,13 +126,13 @@ const HeroEnhanced = () => {
             <Link to="/filme" className="w-full sm:w-auto">
               <InteractiveHoverButton
                 text="Explorează Filmele"
-                className="w-full sm:w-auto min-w-[200px] px-6 py-6 text-base md:text-lg"
+                className="w-full sm:w-auto min-w-[320px] px-10 py-4 text-base md:text-lg"
               />
             </Link>
             <Link to="/productie" className="w-full sm:w-auto">
               <InteractiveHoverButton
                 text="Portofoliu Producție"
-                className="w-full sm:w-auto min-w-[200px] px-6 py-6 text-base md:text-lg glass-effect"
+                className="w-full sm:w-auto min-w-[320px] px-10 py-4 text-base md:text-lg glass-effect"
               />
             </Link>
           </motion.div>

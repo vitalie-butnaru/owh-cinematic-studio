@@ -192,23 +192,7 @@ const BiletePage = () => {
         </div>
       </section>
 
-      {/* WordPress Integration Info */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
-            Integrare cu <span className="text-cinema-orange">WordPress</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-            Această pagină este pregătită pentru integrare cu WordPress folosind REST API. 
-            Evenimentele vor fi gestionate prin WordPress + WooCommerce pentru bilete.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="outline" asChild>
-              <Link to="/contacte">Contactează-ne pentru Integrare</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Removed WordPress integration messaging for public visitors */}
 
       <Footer />
     </div>

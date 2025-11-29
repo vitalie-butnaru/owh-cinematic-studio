@@ -73,7 +73,7 @@ const FilmePage = () => {
                   key={category.value}
                   text={category.label}
                   onClick={() => setSelectedCategory(category.value)}
-                  className={`shadow-sm ${
+                  className={`min-w-[240px] px-8 py-3 text-base shadow-sm ${
                     selectedCategory === category.value
                       ? "border-cinema-gold bg-cinema-gold/10"
                       : ""

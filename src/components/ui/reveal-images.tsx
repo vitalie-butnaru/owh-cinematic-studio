@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 interface ImageSource {
   src: string;
@@ -8,14 +9,15 @@ interface ImageSource {
 interface ShowImageListItemProps {
   text: string;
   images: [ImageSource, ImageSource];
+  link?: string;
 }
 
-function RevealImageListItem({ text, images }: ShowImageListItemProps) {
+function RevealImageListItem({ text, images, link }: ShowImageListItemProps) {
   const container = "absolute right-8 -top-1 z-40 h-20 w-16";
   const effect =
     "relative duration-500 delay-100 shadow-none group-hover:shadow-xl scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100 group-hover:w-full group-hover:h-full w-16 h-16 overflow-hidden transition-all rounded-md";
 
-  return (
+  const Content = (
     <div className="group relative h-fit w-fit overflow-visible py-8">
       <h1 className="text-7xl font-black text-foreground transition-all duration-500 group-hover:opacity-40">
         {text}
@@ -31,11 +33,19 @@ function RevealImageListItem({ text, images }: ShowImageListItemProps) {
           "translate-x-0 translate-y-0 rotate-0 transition-all delay-150 duration-500 group-hover:translate-x-6 group-hover:translate-y-6 group-hover:rotate-12",
         )}
       >
-        <div className={cn(effect, "duration-200")}>
+        <div className={cn(effect, "duration-200")}> 
           <img alt={images[0].alt} src={images[0].src} className="h-full w-full object-cover" />
         </div>
       </div>
     </div>
+  );
+
+  return link ? (
+    <Link to={link} className="block">
+      {Content}
+    </Link>
+  ) : (
+    Content
   );
 }
 
@@ -44,7 +54,7 @@ function RevealImageList({ items }: { items: ShowImageListItemProps[] }) {
     <div className="flex flex-col gap-1 rounded-sm bg-background px-8 py-4">
       <h3 className="text-sm font-black uppercase text-muted-foreground">Serviciile Noastre</h3>
       {items.map((item, index) => (
-        <RevealImageListItem key={index} text={item.text} images={item.images} />
+        <RevealImageListItem key={index} text={item.text} images={item.images} link={item.link} />
       ))}
     </div>
   );

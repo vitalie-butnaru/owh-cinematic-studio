@@ -42,7 +42,7 @@ const ServicesPreview = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-16 md:py-32 relative overflow-hidden">
+    <section ref={ref} className="min-h-screen py-20 md:py-32 relative overflow-hidden flex items-center">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/50 to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.05),transparent_70%)]" />
@@ -58,7 +58,7 @@ const ServicesPreview = () => {
           <span className="inline-block px-4 py-2 rounded-full bg-cinema-orange/10 text-cinema-orange text-sm font-medium mb-4">
             Serviciile Noastre
           </span>
-          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6">
+          <h2 className="text-5xl md:text-7xl font-heading font-bold mb-6">
             De la Idee la
             <span className="gradient-text block mt-2">Ecran</span>
           </h2>
@@ -69,7 +69,7 @@ const ServicesPreview = () => {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -83,9 +83,9 @@ const ServicesPreview = () => {
                   to={service.link}
                   className="group block h-full"
                 >
-                  <div className="relative h-full p-8 rounded-2xl bg-card border border-border overflow-hidden hover-lift transition-all duration-300">
+                  <div className="relative h-full p-10 rounded-2xl bg-card border border-border overflow-hidden hover-lift transition-all duration-300">
                     {/* Gradient Overlay on Hover */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none`} />
 
                     {/* Icon */}
                     <div className="relative z-10 mb-6">
@@ -97,6 +97,7 @@ const ServicesPreview = () => {
                     {/* Content */}
                     <div className="relative z-10">
                       <h3 className="text-2xl font-heading font-bold mb-3 group-hover:text-cinema-orange transition-colors">
+                        <Icon className="inline-block w-5 h-5 text-cinema-orange mr-2 align-[-2px]" />
                         {service.title}
                       </h3>
                       <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -115,7 +116,7 @@ const ServicesPreview = () => {
                     </div>
 
                     {/* Corner Accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-cinema-orange/5 to-transparent rounded-bl-3xl" />
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-cinema-orange/5 to-transparent rounded-bl-3xl pointer-events-none" />
                   </div>
                 </Link>
               </motion.div>
@@ -144,6 +145,7 @@ const ServicesPreview = () => {
                     alt: "Producție Film 2",
                   },
                 ],
+                link: "/filme",
               },
               {
                 text: "Producție",
@@ -157,6 +159,7 @@ const ServicesPreview = () => {
                     alt: "Video Producție 2",
                   },
                 ],
+                link: "/productie",
               },
               {
                 text: "Rental",
@@ -170,6 +173,7 @@ const ServicesPreview = () => {
                     alt: "Echipament 2",
                   },
                 ],
+                link: "/rental",
               },
             ]}
           />
@@ -185,7 +189,7 @@ const ServicesPreview = () => {
           <Link to="/contacte">
             <InteractiveHoverButton
               text="Contactează-ne"
-              className="w-auto px-8 text-base"
+              className="w-auto min-w-[300px] px-12 py-4 text-base"
             />
           </Link>
         </motion.div>

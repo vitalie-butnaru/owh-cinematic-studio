@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import HeaderNew from "@/components/HeaderNew";
 import Footer from "@/components/Footer";
@@ -123,11 +123,8 @@ const RentalPage = () => {
     { id: "bmd-bidir-sdi-hdmi", name: "Blackmagic Bi‑Dir SDI‑HDMI 3G Micro Converter", category: "monitoring", description: "Converter bidirecțional", daily_rate: 10, image_url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1200&h=675&fit=crop", is_available: true, currency: "EUR" }
   ];
 
-  useEffect(() => {
-    fetchEquipment();
-  }, [selectedCategory]);
 
-  const fetchEquipment = async () => {
+  const fetchEquipment = useCallback(async () => {
     try {
       let query = supabase
         .from("rental_equipment")
@@ -141,13 +138,24 @@ const RentalPage = () => {
 
       const { data, error } = await query;
       if (error) throw error;
-      setEquipment((data && data.length) ? data as unknown as Equipment[] : fallbackEquipment);
+      const fallbackFiltered = selectedCategory === "all"
+        ? fallbackEquipment
+        : fallbackEquipment.filter((e) => e.category === selectedCategory);
+      setEquipment((data && data.length) ? (data as unknown as Equipment[]) : fallbackFiltered);
     } catch (error) {
       console.error("Error fetching equipment:", error);
+      const fallbackFiltered = selectedCategory === "all"
+        ? fallbackEquipment
+        : fallbackEquipment.filter((e) => e.category === selectedCategory);
+      setEquipment(fallbackFiltered);
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    fetchEquipment();
+  }, [fetchEquipment]);
 
   const addToCart = (item: Equipment) => {
     const existing = cart.find(c => c.id === item.id);
@@ -389,7 +397,7 @@ const RentalPage = () => {
                     <div className="flex-1">
                       <h4 className="font-semibold">{item.name}</h4>
                       <p className="text-sm text-muted-foreground">
-                        {item.daily_rate} MDL/zi
+                        {item.daily_rate} {item.currency || "MDL"}/zi
                       </p>
                       <div className="flex items-center gap-2 mt-2">
                         <Button
