@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Play, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -117,27 +117,18 @@ const HeroEnhanced = () => {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 pt-6 md:pt-8 px-4"
           >
-            <Button
-              size="lg"
-              className="group relative overflow-hidden w-full sm:w-auto px-6 md:px-8 py-5 md:py-6 text-base md:text-lg"
-              asChild
-            >
-              <Link to="/filme">
-                <span className="relative z-10 flex items-center justify-center">
-                  <Play className="mr-2 h-4 w-4 md:h-5 md:w-5 group-hover:scale-110 transition-transform" />
-                  Explorează Filmele
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-cinema-orange to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="glass-effect border-2 w-full sm:w-auto px-6 md:px-8 py-5 md:py-6 text-base md:text-lg hover-glow"
-              asChild
-            >
-              <Link to="/productie">Portofoliu Producție</Link>
-            </Button>
+            <Link to="/filme" className="w-full sm:w-auto">
+              <InteractiveHoverButton
+                text="Explorează Filmele"
+                className="w-full sm:w-auto min-w-[200px] px-6 py-6 text-base md:text-lg"
+              />
+            </Link>
+            <Link to="/productie" className="w-full sm:w-auto">
+              <InteractiveHoverButton
+                text="Portofoliu Producție"
+                className="w-full sm:w-auto min-w-[200px] px-6 py-6 text-base md:text-lg glass-effect"
+              />
+            </Link>
           </motion.div>
 
           {/* Stats */}

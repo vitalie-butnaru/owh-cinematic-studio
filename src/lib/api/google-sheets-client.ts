@@ -1,6 +1,6 @@
 import { GOOGLE_SHEETS_CONFIG, GOOGLE_SHEETS_COLUMNS } from '@/config/googleSheets';
 
-function pickColumn(row: Record<string, unknown>, keys: string[]): unknown {
+function pickColumn(row: Record<string, unknown>, keys: readonly string[]): unknown {
   const normalized: Record<string, unknown> = {};
   Object.keys(row).forEach((key) => {
     normalized[key.trim().toLowerCase()] = row[key];

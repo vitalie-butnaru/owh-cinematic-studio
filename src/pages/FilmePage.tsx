@@ -3,9 +3,10 @@ import Footer from "@/components/Footer";
 import { useSheetsFilms } from "@/hooks/sheets/useFilms";
 import { Film, Calendar, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState } from "react";
+import { Timeline } from "@/components/ui/timeline";
 
 const categories = [
   { value: "all", label: "Toate" },
@@ -68,14 +69,16 @@ const FilmePage = () => {
             {/* Category Filter */}
             <div className="flex flex-wrap justify-center gap-3">
               {categories.map((category) => (
-                <Button
+                <InteractiveHoverButton
                   key={category.value}
-                  variant={selectedCategory === category.value ? "default" : "outline"}
+                  text={category.label}
                   onClick={() => setSelectedCategory(category.value)}
-                  className="shadow-sm"
-                >
-                  {category.label}
-                </Button>
+                  className={`shadow-sm ${
+                    selectedCategory === category.value
+                      ? "border-cinema-gold bg-cinema-gold/10"
+                      : ""
+                  }`}
+                />
               ))}
             </div>
           </div>
@@ -99,72 +102,62 @@ const FilmePage = () => {
               </p>
             </div>
           ) : (
-            <div className="space-y-8">
-              {years.map((year) => {
+            <Timeline
+              data={years.map((year) => {
                 const items = groupedByYear?.[year] || [];
-                const isOpen = expandedYears.includes(year);
-                return (
-                  <div key={year} className="rounded-xl border border-border">
-                    <div className="flex items-center justify-between p-4">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl font-heading font-bold">{year}</span>
-                        <span className="px-3 py-1 text-xs rounded-full bg-secondary text-foreground">
-                          {items.length} filme
-                        </span>
-                      </div>
-                      <Button variant="outline" size="sm" onClick={() => toggleYear(year)}>
-                        {isOpen ? "Ascunde" : "Vezi filme"}
-                      </Button>
-                    </div>
-                    {isOpen && (
-                      <div className="p-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                          {items.map((film, index) => (
-                            <Link
-                              key={film.id}
-                              to={`/filme/${film.slug}`}
-                              className="group hover-lift"
-                              style={{ animationDelay: `${index * 0.05}s` }}
-                            >
-                              <div className="relative aspect-[2/3] rounded-xl overflow-hidden shadow-card">
-                                <img
-                                  src={film.poster_url || "/placeholder.svg"}
-                                  alt={film.title}
-                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                  loading="lazy"
-                                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder.svg"; }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-cinema-dark via-cinema-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                <div className="absolute top-3 left-3 flex gap-2">
-                                  {film.category && (
-                                    <span className="px-3 py-1 text-xs rounded-full bg-primary/80 text-white">
-                                      {film.category}
-                                    </span>
-                                  )}
+                return {
+                  title: year,
+                  content: (
+                    <div>
+                      <p className="text-foreground text-xs md:text-sm font-normal mb-4">
+                        {items.length} {items.length === 1 ? "film" : "filme"} în {year}
+                      </p>
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {items.map((film) => (
+                          <Link
+                            key={film.id}
+                            to={`/filme/${film.slug}`}
+                            className="group hover-lift"
+                          >
+                            <div className="relative aspect-[2/3] rounded-xl overflow-hidden shadow-card">
+                              <img
+                                src={film.poster_url || "/placeholder.svg"}
+                                alt={film.title}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                loading="lazy"
+                                onError={(e) => {
+                                  (e.currentTarget as HTMLImageElement).src =
+                                    "/placeholder.svg";
+                                }}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-cinema-dark via-cinema-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                              {film.category && (
+                                <div className="absolute top-2 left-2">
+                                  <span className="px-2 py-1 text-xs rounded-full bg-cinema-gold/90 text-cinema-darker font-medium">
+                                    {film.category}
+                                  </span>
                                 </div>
-                                <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                  <h3 className="text-xl font-heading font-bold text-white mb-2">
-                                    {film.title}
-                                  </h3>
-                                  <div className="flex flex-wrap gap-3 text-xs text-white/80">
-                                    {film.duration && (
-                                      <span className="flex items-center gap-1">
-                                        <Clock className="w-4 h-4" />
-                                        {film.duration} min
-                                      </span>
-                                    )}
+                              )}
+                              <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <h3 className="text-sm md:text-base font-heading font-bold text-white mb-1 line-clamp-2">
+                                  {film.title}
+                                </h3>
+                                {film.duration && (
+                                  <div className="flex items-center gap-1 text-xs text-white/80">
+                                    <Clock className="w-3 h-3" />
+                                    {film.duration} min
                                   </div>
-                                </div>
+                                )}
                               </div>
-                            </Link>
-                          ))}
-                        </div>
+                            </div>
+                          </Link>
+                        ))}
                       </div>
-                    )}
-                  </div>
-                );
+                    </div>
+                  ),
+                };
               })}
-            </div>
+            />
           )}
         </div>
       </main>
