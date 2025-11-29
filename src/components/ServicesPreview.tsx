@@ -2,8 +2,9 @@ import { Film, Video, Camera, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Button } from "./ui/button";
+import { InteractiveHoverButton } from "./ui/interactive-hover-button";
 import { Link } from "react-router-dom";
+import { RevealImageList } from "./ui/reveal-images";
 
 const services = [
   {
@@ -122,16 +123,71 @@ const ServicesPreview = () => {
           })}
         </div>
 
+        {/* Reveal Images Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-20 flex justify-center"
+        >
+          <RevealImageList
+            items={[
+              {
+                text: "Film",
+                images: [
+                  {
+                    src: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&auto=format&fit=crop&q=80",
+                    alt: "Producție Film 1",
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&auto=format&fit=crop&q=80",
+                    alt: "Producție Film 2",
+                  },
+                ],
+              },
+              {
+                text: "Producție",
+                images: [
+                  {
+                    src: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&auto=format&fit=crop&q=80",
+                    alt: "Video Producție 1",
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1574267432553-4b4628081c31?w=400&auto=format&fit=crop&q=80",
+                    alt: "Video Producție 2",
+                  },
+                ],
+              },
+              {
+                text: "Rental",
+                images: [
+                  {
+                    src: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&auto=format&fit=crop&q=80",
+                    alt: "Echipament 1",
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=400&auto=format&fit=crop&q=80",
+                    alt: "Echipament 2",
+                  },
+                ],
+              },
+            ]}
+          />
+        </motion.div>
+
         {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
           className="text-center mt-16"
         >
-          <Button size="lg" variant="outline" className="glass-effect hover-glow" asChild>
-            <Link to="/contacte">Contactează-ne pentru un Proiect</Link>
-          </Button>
+          <Link to="/contacte">
+            <InteractiveHoverButton
+              text="Contactează-ne"
+              className="w-auto px-8 text-base"
+            />
+          </Link>
         </motion.div>
       </div>
     </section>
