@@ -95,7 +95,7 @@ const HeroEnhanced = () => {
               text="OWH STUDIO"
               duration={0.08}
               delay={0.03}
-              textClassName="text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-heading font-bold leading-tight gradient-text"
+              textClassName="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-heading font-bold leading-tight gradient-text"
               underlineGradient="from-cinema-orange via-primary to-cinema-orange"
               underlineHeight="h-1.5"
               underlineOffset="-bottom-3"
@@ -107,7 +107,7 @@ const HeroEnhanced = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-lg md:text-2xl lg:text-3xl text-muted-foreground font-light max-w-3xl mx-auto px-4"
+            className="text-sm sm:text-base md:text-xl lg:text-2xl text-muted-foreground font-light max-w-3xl mx-auto px-4"
           >
             Film • Producție Video • Rental Echipament
             <br className="hidden sm:block" />
@@ -126,13 +126,13 @@ const HeroEnhanced = () => {
             <Link to="/filme" className="w-full sm:w-auto">
               <InteractiveHoverButton
                 text="Explorează Filmele"
-                className="w-full sm:w-auto min-w-[320px] px-10 py-4 text-base md:text-lg"
+                className="w-full sm:w-auto sm:min-w-[280px] md:min-w-[320px] px-8 md:px-10 py-3 md:py-4 text-sm md:text-base"
               />
             </Link>
             <Link to="/productie" className="w-full sm:w-auto">
               <InteractiveHoverButton
                 text="Portofoliu Producție"
-                className="w-full sm:w-auto min-w-[320px] px-10 py-4 text-base md:text-lg glass-effect"
+                className="w-full sm:w-auto sm:min-w-[280px] md:min-w-[320px] px-8 md:px-10 py-3 md:py-4 text-sm md:text-base glass-effect"
               />
             </Link>
           </motion.div>
@@ -142,7 +142,7 @@ const HeroEnhanced = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 pt-12 md:pt-16 max-w-4xl mx-auto px-4"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 lg:gap-8 pt-10 md:pt-16 max-w-4xl mx-auto px-4"
           >
             {[
               { number: "25+", label: "Ani Experiență" },
@@ -157,10 +157,10 @@ const HeroEnhanced = () => {
                 transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-2xl md:text-4xl lg:text-5xl font-bold gradient-text mb-1 md:mb-2">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold gradient-text mb-1 md:mb-2">
                   {stat.number}
                 </div>
-                <div className="text-xs md:text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
