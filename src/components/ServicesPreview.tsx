@@ -137,12 +137,12 @@ const ServicesPreview = () => {
                 text: "Film",
                 images: [
                   {
-                    src: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&auto=format&fit=crop&q=80",
-                    alt: "Producție Film 1",
+                    src: "/servicii/film-1.jpeg",
+                    alt: "Producție Film OWH Studio",
                   },
                   {
-                    src: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&auto=format&fit=crop&q=80",
-                    alt: "Producție Film 2",
+                    src: "/servicii/film-2.jpeg",
+                    alt: "Film Documentar OWH",
                   },
                 ],
                 link: "/filme",
@@ -151,12 +151,12 @@ const ServicesPreview = () => {
                 text: "Producție",
                 images: [
                   {
-                    src: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&auto=format&fit=crop&q=80",
-                    alt: "Video Producție 1",
+                    src: "/servicii/productie-1.jpeg",
+                    alt: "Video Producție OWH",
                   },
                   {
-                    src: "https://images.unsplash.com/photo-1574267432553-4b4628081c31?w=400&auto=format&fit=crop&q=80",
-                    alt: "Video Producție 2",
+                    src: "/servicii/productie-2.jpeg",
+                    alt: "Producție Video Profesională",
                   },
                 ],
                 link: "/productie",
@@ -165,12 +165,12 @@ const ServicesPreview = () => {
                 text: "Rental",
                 images: [
                   {
-                    src: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&auto=format&fit=crop&q=80",
-                    alt: "Echipament 1",
+                    src: "/servicii/rental-1.jpeg",
+                    alt: "Echipament Video OWH",
                   },
                   {
-                    src: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=400&auto=format&fit=crop&q=80",
-                    alt: "Echipament 2",
+                    src: "/servicii/rental-2.jpeg",
+                    alt: "Închiriere Echipament",
                   },
                 ],
                 link: "/rental",
